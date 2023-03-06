@@ -1,1 +1,2 @@
 void printGameMenu();
+void printSinglePlayerMenu();
