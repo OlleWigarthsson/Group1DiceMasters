@@ -12,4 +12,7 @@ int main(){
 	else if(choice == 2){
 		printMultiplayerMenu();
 	}
+	else if(choice == 3){
+		printSettingsMenu();
+	}
 }
