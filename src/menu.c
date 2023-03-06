@@ -17,3 +17,10 @@ void printSinglePlayerMenu(){
 	//fflush(stdout);
 
 }
+//Prints out the multiplayer menu
+void printMultiplayerMenu(){
+	printf("1. New Game\n");
+	printf("2. Load Game\n");
+	printf("3. Back\n");
+
+}

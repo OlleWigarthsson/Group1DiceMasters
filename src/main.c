@@ -9,4 +9,7 @@ int main(){
 	if(choice == 1){
 		printSinglePlayerMenu();
 	}
+	else if(choice == 2){
+		printMultiplayerMenu();
+	}
 }
