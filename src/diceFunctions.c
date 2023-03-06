@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -29,3 +30,17 @@ void rollPool(DicePool *pool) {
         pool->dice[i].value = rollDice();
     }
 }
+
+//Function to sum dices
+int sumOfDicepool(Dice diceArray[], int numberOfDice) {
+	
+	int sum = 0;
+	
+	for(int i = 0; i < numberOfDice; i++)
+	{
+		sum += diceArray[i]; 
+	}
+		
+	return sum;
+}
+
