@@ -24,3 +24,8 @@ void printMultiplayerMenu(){
 	printf("3. Back\n");
 
 }
+void printSettingsMenu(){
+	printf("1. Strict Gameplay\n");
+	printf("2. Flexible Gameplay\n");
+
+}

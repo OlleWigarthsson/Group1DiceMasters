@@ -1,6 +1,7 @@
 //
 typedef struct Dice{
 	int nrOnFace;
+	int toRoll;
 }Dice;
 
 
