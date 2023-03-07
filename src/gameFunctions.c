@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "diceFunctions.h"
 #include "gameFunctions.h"
 void singlePlayerGame(){
@@ -45,7 +43,7 @@ void playRound(DicePool* dicePool){
 			dicePool->dice[choice-1].toRoll = 0;
 			choices++;
 		}
-		printf("Rolling for 1's\n");
+		printf("Roll: \n");
 		rollPool(dicePool);
 		printDicePool(dicePool);
 		//printf("\e[1;1H\e[2J");

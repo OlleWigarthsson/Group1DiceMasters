@@ -1,7 +1,4 @@
-#include "structs.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
+#include "headers.h"
 
 //Function to print all dice values
 void printDicePool(DicePool *pool){
