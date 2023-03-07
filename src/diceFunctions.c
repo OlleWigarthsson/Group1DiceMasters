@@ -44,3 +44,48 @@ int sumOfDicepool(Dice diceArray[], int numberOfDice) {
 	return sum;
 }
 
+//Looking for highest 3 of same kind and returns if found, else return 0
+DicePool* findHighestThreeOfSame(DicePool *pool)
+{
+	int countNrOnFace[6] = {0};
+
+	// Counting nr of each kind (1-6)
+	for (int i = 0; i < pool->numberOfDice; i++)
+	{
+		countNrOnFace[pool->dice[i].nrOnFace-1]++;
+	}
+
+	//Finding value on the dice with 3 same
+	int faceValueof3Same = 0;
+	for (int i = 0; i < 6; i++)
+	{
+		if(countNrOnFace[i] >= 3)
+			faceValueof3Same = i+1;
+	}
+
+	DicePool *subPool = malloc(sizeof(DicePool));
+	subPool->numberOfDice = 3;
+
+	// Check if value is x and store sub-pool
+	int foundCount = 0;
+	//subPool->dice = malloc(sizeof(Dice) * subPool->numberOfDice);
+	for (int i = 0; i < pool->numberOfDice && foundCount < 3; i++)
+	{
+	    if (pool->dice[i].nrOnFace == faceValueof3Same)
+	    {
+	        subPool->dice[foundCount++] = pool->dice[i];
+
+	    }
+	}
+
+	if (foundCount == 3)
+	{
+	    return subPool;
+	}
+	else
+	{
+	    //free(subPool->dice); // Free allocated memory for dice array
+	    free(subPool); // Free allocated memory for sub-pool
+	    return NULL;
+	}
+}

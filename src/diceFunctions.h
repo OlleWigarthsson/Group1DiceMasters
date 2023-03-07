@@ -8,3 +8,4 @@ void rollPool(DicePool *pool);
 //Function to sum dices
 int sumOfDicepool(Dice diceArray[], int numberOfDice);
 
+DicePool* findHighestThreeOfSame(DicePool *pool);
