@@ -66,3 +66,35 @@ int subpoolOfDice(DicePool* pool, int faceValue)
 	}
 	return counting;
 }
+
+// A bubble sorting, from smallest to biggest
+void soringSmallBig (DicePool *pool) {
+    int i, j;
+    Dice temp;
+    for (i = 0; i < size-1; i++) {
+        for (j = 0; j < size-1-i; j++) {
+            if (pool->dice[j].nrOnFace > pool->dice[j+1].nrOnFace) {
+                temp = pool->dice[j].nrOnFace;
+                pool->dice[j].nrOnFace = pool->dice[j+1].nrOnFace;
+                pool->dice[j+1].nrOnFace = temp;
+            }
+        }
+    }
+}
+
+// A bubble sorting, from biggest to smallest
+void sortingBigSmall(DicePool *pool) {
+    int i, j;
+    Dice temp;
+    for (i = 0; i < size-1; i++) {
+        for (j = 0; j < size-1-i; j++) {
+            if (pool->dice[j].nrOnFace < pool->dice[j+1].nrOnFace) {
+                temp = pool->dice[j].nrOnFace;
+                pool->dice[j].nrOnFace = pool->dice[j+1].nrOnFace;
+                pool->dice[j+1].nrOnFace = temp;
+            }
+        }
+    }
+}
+
+
