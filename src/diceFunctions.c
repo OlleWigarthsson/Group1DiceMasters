@@ -1,5 +1,5 @@
 #include "headers.h"
-
+#include "structs.h"
 //Function to print all dice values
 void printDicePool(DicePool *pool){
 	for(int i = 0;i<pool->numberOfDice;i++){
@@ -58,6 +58,7 @@ void resetDiceThrows(DicePool* pool){
 //Function to loop through Dicepool to count all values of dices
 int subpoolOfDice(DicePool* pool, int faceValue)
 {
+	//TODO CHANGE NAME
 	int counting;
 
 	for (int i = 0; i < pool->numberOfDice; i++) {
@@ -65,4 +66,22 @@ int subpoolOfDice(DicePool* pool, int faceValue)
 			counting++;
 	}
 	return counting;
+}
+//Returns a subpool with all dices with faceValue
+DicePool* getSubpoolOfDice(DicePool* pool, int faceValue){
+	DicePool* subPool = (DicePool*)malloc(sizeof(DicePool));
+	subPool->numberOfDice = 0;
+	for(int i = 0;i<pool->numberOfDice;i++){
+		if(pool->dice[i].nrOnFace == faceValue){
+			subPool->dice = realloc(subPool->dice, (subPool->numberOfDice + 1) * sizeof(Dice));
+			subPool->dice[subPool->numberOfDice++] = pool->dice[i];
+		}
+	}
+	printf("%d\n", subPool->dice[0].nrOnFace);
+	return subPool;
+}
+void lockSubpoolThrows(DicePool* pool){
+	for(int i = 0;i<pool->numberOfDice;i++){
+		pool->dice[i].toRoll = 0;
+	}
 }
