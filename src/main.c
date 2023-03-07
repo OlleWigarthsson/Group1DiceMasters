@@ -1,9 +1,9 @@
-#include "headers.h"
 #include "menu.h"
+#include "gameFunctions.h"
 
 int main(){
 	srand(time(0));
-	bool playing = false;
+	//bool playing = false;
 	int choice = 0;
 	printGameMenu();
 	scanf("%d", &choice);
