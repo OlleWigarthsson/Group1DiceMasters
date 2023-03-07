@@ -1,13 +1,17 @@
-#include "structs.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
+#include "headers.h"
 
-// Function to add a dice to a dice pool
-void addDice(DicePool *pool, Dice dice) {
-	pool->dice = realloc(pool->dice, (pool->numberOfDice + 1) * sizeof(Dice));
-	pool->dice[pool->numberOfDice] = dice;
-	pool->numberOfDice++;
+//Function to print all dice values
+void printDicePool(DicePool *pool){
+	for(int i = 0;i<pool->numberOfDice;i++){
+		printf("%d ", pool->dice[i].nrOnFace);
+	}
+	printf("\n");
+}
+void addDice(DicePool *pool) {
+    pool->dice = realloc(pool->dice, (pool->numberOfDice + 1) * sizeof(Dice));
+    Dice dice;
+    dice.toRoll = 1;
+    pool->dice[pool->numberOfDice++] = dice;
 }
 
 // Function to merge two dice pools
@@ -26,9 +30,11 @@ int rollDice() {
 
 // Function to roll a dice pool
 void rollPool(DicePool *pool) {
-	for (int i = 0; i < pool->numberOfDice; i++) {
-		pool->dice[i].nrOnFace = rollDice();
-	}
+    for (int i = 0; i < pool->numberOfDice; i++) {
+    	if(pool->dice[i].toRoll == 1){
+    		pool->dice[i].nrOnFace = rollDice();
+    	}
+    }
 }
 
 //Function to sum dices
@@ -42,6 +48,11 @@ int sumOfDicepool(Dice diceArray[], int numberOfDice) {
 	}
 
 	return sum;
+}
+void resetDiceThrows(DicePool* pool){
+	for(int i = 0;i<pool->numberOfDice;i++){
+		pool->dice[i].toRoll = 1;
+	}
 }
 
 //Function to loop through Dicepool to count all values of dices

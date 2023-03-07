@@ -1,0 +1,2 @@
+void singlePlayerGame();
+void multiPlayerGame();
