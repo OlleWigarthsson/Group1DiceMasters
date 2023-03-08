@@ -1,5 +1,4 @@
-#include "headers.h"
-#include "structs.h"
+#include "diceFunctions.h"
 //Function to print all dice values
 void printDicePool(DicePool *pool){
 	for(int i = 0;i<pool->numberOfDice;i++){
@@ -56,7 +55,7 @@ void resetDiceThrows(DicePool* pool){
 }
 
 //Function to loop through Dicepool to count all values of dices
-int subpoolOfDice(DicePool* pool, int faceValue)
+int amountOfSubpoolDices(DicePool* pool, int faceValue)
 {
 	//TODO CHANGE NAME
 	int counting;
@@ -68,20 +67,25 @@ int subpoolOfDice(DicePool* pool, int faceValue)
 	return counting;
 }
 //Returns a subpool with all dices with faceValue
-DicePool* getSubpoolOfDice(DicePool* pool, int faceValue){
-	DicePool* subPool = (DicePool*)malloc(sizeof(DicePool));
+void getSubpoolOfDice(DicePool* pool, DicePool* subPool, int faceValue){
+	subPool = (DicePool*)malloc(sizeof(DicePool));
+	subPool->dice = (Dice*)malloc(sizeof(Dice));
 	subPool->numberOfDice = 0;
 	for(int i = 0;i<pool->numberOfDice;i++){
 		if(pool->dice[i].nrOnFace == faceValue){
-			subPool->dice = realloc(subPool->dice, (subPool->numberOfDice + 1) * sizeof(Dice));
-			subPool->dice[subPool->numberOfDice++] = pool->dice[i];
+			pool->dice[i].toRoll = 0;
+//			subPool->dice = realloc(subPool->dice, (subPool->numberOfDice + 1) * sizeof(Dice));
+//			subPool->dice[subPool->numberOfDice++] = pool->dice[i];
+//			//*subPool->numberOfDice++;
 		}
 	}
-	printf("%d\n", subPool->dice[0].nrOnFace);
-	return subPool;
+	printf("%d\n", subPool->numberOfDice);
+	//return subPool;
 }
-void lockSubpoolThrows(DicePool* pool){
+void lockSubpoolThrows(DicePool* pool, int value){
 	for(int i = 0;i<pool->numberOfDice;i++){
-		pool->dice[i].toRoll = 0;
+		if(pool->dice[i].nrOnFace == value){
+			pool->dice[i].toRoll = 0;
+		}
 	}
 }

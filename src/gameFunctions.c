@@ -2,7 +2,7 @@
 void singlePlayerGame(){
 	DicePool *dicePool = (DicePool*)malloc(sizeof(DicePool));
 	dicePool->numberOfDice = 0;
-	ScoreboardColumn scoreBoard;
+	ScoreboardColumn scoreBoard = {-1};
 	for(int i = 0;i<5;i++){
 		addDice(dicePool);
 	}
@@ -13,17 +13,54 @@ void singlePlayerGame(){
 	playRound(dicePool, 1);
 
 	//Save score
-
+	scoreBoard.ones = amountOfSubpoolDices(dicePool, 1);
 	//Reset Dice
 	resetDiceThrows(dicePool);
 
 	//Twos
 	printf("Rolling for 2's\n");
-	//playRound(dicePool);
+	playRound(dicePool, 2);
 
-	//Save Score
-
+	//Save score
+	scoreBoard.twos = amountOfSubpoolDices(dicePool, 2);
 	//Reset Dice
+	resetDiceThrows(dicePool);
+
+	//Threes
+	printf("Rolling for 3's\n");
+	playRound(dicePool, 3);
+
+	//Save score
+	scoreBoard.threes = amountOfSubpoolDices(dicePool, 3);
+	//Reset Dice
+	resetDiceThrows(dicePool);
+
+	//Fours
+	printf("Rolling for 4's\n");
+	playRound(dicePool, 4);
+
+	//Save score
+	scoreBoard.fours = amountOfSubpoolDices(dicePool, 4);
+	//Reset Dice
+	resetDiceThrows(dicePool);
+
+	//Fives
+	printf("Rolling for 5's\n");
+	playRound(dicePool, 5);
+
+	//Save score
+	scoreBoard.fives = amountOfSubpoolDices(dicePool, 5);
+	//Reset Dice
+	resetDiceThrows(dicePool);
+
+	//Sixes
+	printf("Rolling for 6's\n");
+	playRound(dicePool, 6);
+
+	//Save score
+	scoreBoard.sixes = amountOfSubpoolDices(dicePool, 6);
+	//Reset Dice
+	resetDiceThrows(dicePool);
 
 
 
@@ -38,19 +75,10 @@ void playRound(DicePool* dicePool, int value){
 	printDicePool(dicePool);
 	for(int i = 0;i<2;i++){
 		printf("Enter dice you don't want to roll (0 to continue): \n");
-//		choices = 0;
-//		while(choice != 0 && choices <= 4){
-//			scanf("%d", &choice);
-//			dicePool->dice[choice-1].toRoll = 0;
-//			choices++;
-//		}
-		subPool = getSubpoolOfDice(dicePool, value);
-		printf("%d %d\n", subPool, subPool->numberOfDice);
-		lockSubpoolThrows(subPool);
+		lockSubpoolThrows(dicePool, value);
 		printf("Roll: \n");
 		rollPool(dicePool);
 		printDicePool(dicePool);
-		//printf("\e[1;1H\e[2J");
 		choice = -1;
 		//if(choice == 0) break;
 	}
