@@ -97,4 +97,30 @@ void sortingBigSmall(DicePool *pool) {
     }
 }
 
+// Funktion to see if we have a full house or not
+int findFullHouse(DicePool* pool) {
+	int Pair = 0;
+	int threePair = 0;
+	for (int i = 0; i < pool.numberOfDice - 2; i++) {
+		for (int j = i + 1; j < pool.numberOfDice -1; j++) {
+			for (int k = j + 1; k < pool.numberOfDice; k++) {
+				if (pool.dice[i] == pool.dice[j] == pool.dice[k]) {
+					if (pool.dice[i] >= threePair) {
+						Pair = threePair;
+						threePair = pool.dice[i];
+					} else if (pool.dice[i] >= Pair) {
+						Pair = pool.dice[i];
+					}
+				}
+			}
+		}
+		if (Pair == 0) {
+			return 0;
+		} else {
+			return threePair + Pair;
+		}
+	}
+	/
+	return EXIT_SUCCESS;
+}
 
