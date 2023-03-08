@@ -8,10 +8,10 @@ void printDicePool(DicePool *pool){
 	printf("\n");
 }
 void addDice(DicePool *pool) {
-    pool->dice = realloc(pool->dice, (pool->numberOfDice + 1) * sizeof(Dice));
-    Dice dice;
-    dice.toRoll = 1;
-    pool->dice[pool->numberOfDice++] = dice;
+	pool->dice = realloc(pool->dice, (pool->numberOfDice + 1) * sizeof(Dice));
+	Dice dice;
+	dice.toRoll = 1;
+	pool->dice[pool->numberOfDice++] = dice;
 }
 
 // Function to merge two dice pools
@@ -30,11 +30,11 @@ int rollDice() {
 
 // Function to roll a dice pool
 void rollPool(DicePool *pool) {
-    for (int i = 0; i < pool->numberOfDice; i++) {
-    	if(pool->dice[i].toRoll == 1){
-    		pool->dice[i].nrOnFace = rollDice();
-    	}
-    }
+	for (int i = 0; i < pool->numberOfDice; i++) {
+		if(pool->dice[i].toRoll == 1){
+			pool->dice[i].nrOnFace = rollDice();
+		}
+	}
 }
 
 //Function to sum dices
@@ -115,4 +115,83 @@ int subpoolOfLargeStraight(DicePool* pool)
 	}
 	return 1;
 }
+
+
+void printScoreBoard(ScoreboardColumn* column)
+{
+	printf("This is your score:")
+
+	if(column->ones != -1)
+	{
+		printf("Ones: %d\n", column->ones);
+	}
+	if(column->twos != -1)
+	{
+		printf("Twos: %d\n", column->twos);
+	}
+	if(column->threes != -1)
+	{
+		printf("Threes: %d\n", column->threes);
+	}
+	if(column->fours != -1)
+	{
+		printf("Fours: %d\n", column->fours);
+	}
+	if(column->fives != -1)
+	{
+		printf("Fives: %d\n", column->fives);
+	}
+	if(column->sixes != -1)
+	{
+		printf("Sixes: %d\n", column->sixes);
+	}
+	if(column->bonus != -1)
+	{
+		printf("Bonus: %d\n", column->bonus);
+	}
+	if(column->pair != -1)
+	{
+		printf("Pair: %d\n", column->pair);
+	}
+	if(column->twoPair != -1)
+	{
+		printf("Two pair: %d", column->twoPair)
+	}
+	if(column->threeOfAKind != -1)
+	{
+		printf("Three of a kind: %d\n", column->threeOfAKind);
+	}
+	if(column->fourOfAKind != -1)
+	{
+		printf("Four of a kind: %d\n", column->fourOfAKind);
+	}
+	if(column->smallStraight != -1)
+	{
+		printf("Small straight: %d\n", column->smallStraight);
+	}
+	if(column->largeStraight != -1)
+	{
+		printf("Large straight: %d\n", column->largeStraight);
+	}
+	if(column->fullHouse != -1)
+	{
+		printf("Full house: %d\n", column->fullHouse);
+	}
+	if(column->chance != -1)
+	{
+		printf("Chance: %d\n", column->chance);
+	}
+	if(column->yatzy != -1)
+	{
+		printf("Yatzy: %d\n", column->yatzy);
+	}
+	if(column->sum != -1)
+	{
+		printf("Total score: %d\n", column->sum);
+	}
+}
+
+
+
+
 
