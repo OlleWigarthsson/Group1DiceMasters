@@ -195,12 +195,66 @@ void printScoreBoard(ScoreboardColumn* column)
 	}
 }
 
+int findHighestSinglePair(DicePool *pool)
+{
+	int countNrOnFace[6] = {0};
+	int highestPairValue = 0;
 
+	// Counting amount of each kind (1-6)
+	for (int i = 0; i < pool->numberOfDice; i++)
+	{
+		countNrOnFace[pool->dice[i].nrOnFace-1]++;
+	}
+	//searching for highest Pair Value
+	for (int i = 0; i < 6; i++)
+	{
+		if (countNrOnFace[i] >= 2 && i+1 > highestPairValue)
+		{
+			highestPairValue = i+1;
+		}
+	}
+	//returns highestPairValue*2 as result from pool,if no pairs then returns 0
+	return highestPairValue*2;
+}
 
+int findHighestTwoPairs(DicePool* pool)
+{
+	int countNrOnFace[6] = {0};
+	int highestPairValues[2] = {0, 0};
+	int sumOfHighestPairs = 0;
 
+	// Counting amount of each kind (1-6)
+	for (int i = 0; i < pool->numberOfDice; i++)
+	{
+		countNrOnFace[pool->dice[i].nrOnFace-1]++;
+	}
 
-//Looking for highest 3 of same kind and returns if found, else return 0
-DicePool* findHighestThreeOfSame(DicePool *pool)
+	// Searching for highest Pair Values and stores in highestpairValue
+	for (int i = 0; i < 6; i++)
+	{
+		if (countNrOnFace[i] >= 2)
+		{
+			if (i+1 > highestPairValues[0])
+			{
+				highestPairValues[1] = highestPairValues[0];
+				highestPairValues[0] = i+1;
+			}
+			else if (i+1 > highestPairValues[1])
+			{
+				highestPairValues[1] = i+1;
+			}
+		}
+	}
+	if (highestPairValues[1] > 0)
+	{
+		sumOfHighestPairs = (highestPairValues[0]*2 + highestPairValues[1]*2);
+
+	}
+
+	return sumOfHighestPairs;
+}
+
+int findHighestThreeOfSame(DicePool *pool)
 {
 	int countNrOnFace[6] = {0};
 
@@ -211,36 +265,47 @@ DicePool* findHighestThreeOfSame(DicePool *pool)
 	}
 
 	//Finding value on the dice with 3 same
-	int faceValueof3Same = 0;
+	int faceValueofThreeSame = 0;
 	for (int i = 0; i < 6; i++)
 	{
 		if(countNrOnFace[i] >= 3)
-			faceValueof3Same = i+1;
+			faceValueofThreeSame = i+1;
 	}
 
-	DicePool *subPool = malloc(sizeof(DicePool));
-	subPool->numberOfDice = 3;
+	//returns value of three same as result, if no 3 same then returns 0
 
-	// Check if value is x and store sub-pool
-	int foundCount = 0;
-	//subPool->dice = malloc(sizeof(Dice) * subPool->numberOfDice);
-	for (int i = 0; i < pool->numberOfDice && foundCount < 3; i++)
-	{
-	    if (pool->dice[i].nrOnFace == faceValueof3Same)
-	    {
-	        subPool->dice[foundCount++] = pool->dice[i];
-
-	    }
-	}
-
-	if (foundCount == 3)
-	{
-	    return subPool;
-	}
-	else
-	{
-	    //free(subPool->dice); // Free allocated memory for dice array
-	    free(subPool); // Free allocated memory for sub-pool
-	    return NULL;
-	}
+	return faceValueofThreeSame*3;
 }
+
+int findHighestFourOfSame(DicePool *pool)
+{
+	int countNrOnFace[6] = {0};
+
+	// Counting nr of each kind (1-6)
+	for (int i = 0; i < pool->numberOfDice; i++)
+	{
+		countNrOnFace[pool->dice[i].nrOnFace-1]++;
+	}
+
+	//Finding value on the dice with 3 same
+	int faceValueofFourSame = 0;
+	for (int i = 0; i < 6; i++)
+	{
+		if(countNrOnFace[i] >= 4)
+			faceValueofFourSame = i+1;
+	}
+
+	return faceValueofFourSame*4;
+}
+
+int calcChance(DicePool *pool)
+{
+	int sumOfDiceValues = 0;
+	for (int i = 0; i < pool->numberOfDice; i++)
+		{
+		sumOfDiceValues += pool->dice[i].nrOnFace;
+		}
+
+	return sumOfDiceValues;
+}
+

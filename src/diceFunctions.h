@@ -12,4 +12,8 @@ void printScoreBoard(ScoreboardColumn* column);
 //Function to sum dices
 int sumOfDicepool(Dice diceArray[], int numberOfDice);
 
-DicePool* findHighestThreeOfSame(DicePool *pool);
+int findHighestSinglePair(DicePool* pool);
+int findHighestTwoPairs(DicePool* pool);
+int findHighestThreeOfSame(DicePool* pool);
+int findHighestFourOfSame(DicePool *pool);
+int calcChance(DicePool *pool);
