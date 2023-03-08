@@ -195,7 +195,14 @@ void printScoreBoard(ScoreboardColumn* column)
 	}
 }
 
-
-
-
-
+//Function to check for 5 of a kind/ Yatzy
+int subpoolOfYatzy(DicePool* pool)
+{
+	for (int i = 0; i < pool->numberOfDice; i++) {
+		if (pool->dice[i].nrOnFace != pool->dice[0].nrOnFace)
+		{
+			return 0;
+		}
+	}
+	return 1;
+}
