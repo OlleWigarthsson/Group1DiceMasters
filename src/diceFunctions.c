@@ -85,3 +85,34 @@ void lockSubpoolThrows(DicePool* pool){
 		pool->dice[i].toRoll = 0;
 	}
 }
+
+//Function to check for small straight
+int subpoolOfSmallStraight(DicePool* pool)
+{
+	int smallStraight[6] = {0};
+	for (int i = 0; i < pool->numberOfDice; i++) {
+		smallStraight[pool->dice[i].nrOnFace-1] = 1;
+	}
+	for (int i = 0; i < 5; i++) {
+		if(smallStraight[i] == 0) {
+			return 0;
+		}
+	}
+	return 1;
+}
+
+//Function to check for large straight
+int subpoolOfLargeStraight(DicePool* pool)
+{
+	int largeStraight[6] = {0};
+	for (int i = 0; i < pool->numberOfDice; i++) {
+		largeStraight[pool->dice[i].nrOnFace -1] = 1;
+	}
+	for (int i = 1; i < 6; i++) {
+		if(largeStraight[i] == 0) {
+			return 0;
+		}
+	}
+	return 1;
+}
+
