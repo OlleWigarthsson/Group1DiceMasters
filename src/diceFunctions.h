@@ -9,6 +9,7 @@ int subpoolOfSmallStraight(DicePool* pool);
 int subpoolOfLargeStraight(DicePool* pool);
 void printScoreBoard(ScoreboardColumn* column);
 int subpoolOfYatzy(DicePool* pool);
+void calcSum(ScoreboardColumn *column);
 
 //Function to sum dices
 int sumOfDicepool(Dice diceArray[], int numberOfDice);

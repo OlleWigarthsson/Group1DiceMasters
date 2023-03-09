@@ -123,7 +123,7 @@ int subpoolOfLargeStraight(DicePool* pool)
 
 void printScoreBoard(ScoreboardColumn* column)
 {
-	printf("This is your score:")
+	printf("This is your score:");
 
 	if(column->ones != -1)
 	{
@@ -159,7 +159,7 @@ void printScoreBoard(ScoreboardColumn* column)
 	}
 	if(column->twoPair != -1)
 	{
-		printf("Two pair: %d", column->twoPair)
+		printf("Two pair: %d", column->twoPair);
 	}
 	if(column->threeOfAKind != -1)
 	{
@@ -205,4 +205,16 @@ int subpoolOfYatzy(DicePool* pool)
 		}
 	}
 	return 1;
+}
+
+// Function that takes input from scoreboard and calc the sum of score
+void calcSum(ScoreboardColumn *column)
+{
+	int sum = column->ones + column->twos + column->threes +
+			column->fours + column->fives + column->sixes + column->bonus +
+			column->pair + column->twoPair + column->threeOfAKind +
+			column->fourOfAKind + column->smallStraight + column->largeStraight
+			+ column->fullHouse + column->chance + column->yatzy;
+
+	sum = column->sum;
 }
