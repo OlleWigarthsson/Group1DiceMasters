@@ -130,7 +130,7 @@ void singlePlayerGame(){
 
 	//Save Score
 	//TODO MERGE AND REPLACE FUNCTION
-	scoreBoard.fullHouse = findHighestSinglePair(dicePool);
+	scoreBoard.fullHouse = findFullHouse(dicePool);
 
 	//Reset Dice
 	resetDiceThrows(dicePool);
@@ -156,6 +156,8 @@ void singlePlayerGame(){
 	resetDiceThrows(dicePool);
 	//Sum
 	calcSum(&scoreBoard);
+
+	printScoreBoard(&scoreBoard);
 
 }
 //Main function to play a round with 3 throws

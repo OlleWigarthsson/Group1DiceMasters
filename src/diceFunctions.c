@@ -2,7 +2,10 @@
 //Function to print all dice values
 void printDicePool(DicePool *pool){
 	for(int i = 0;i<pool->numberOfDice;i++){
-		printf("%d ", pool->dice[i].nrOnFace);
+		if(pool->dice[i].toRoll == 0){
+			printf("[%d]", pool->dice[i].nrOnFace);
+		}
+		else printf("%d ", pool->dice[i].nrOnFace);
 	}
 	printf("\n");
 }
@@ -58,7 +61,7 @@ void resetDiceThrows(DicePool* pool){
 int amountOfSubpoolDices(DicePool* pool, int faceValue)
 {
 	//TODO CHANGE NAME
-	int counting;
+	int counting = 0;
 
 	for (int i = 0; i < pool->numberOfDice; i++) {
 		if (pool->dice[i].nrOnFace == faceValue)
@@ -159,7 +162,7 @@ void printScoreBoard(ScoreboardColumn* column)
 	}
 	if(column->twoPair != -1)
 	{
-		printf("Two pair: %d", column->twoPair);
+		printf("Two pair: %d\n", column->twoPair);
 	}
 	if(column->threeOfAKind != -1)
 	{
@@ -206,6 +209,30 @@ int subpoolOfYatzy(DicePool* pool)
 		}
 	}
 	return 1;
+}
+int findFullHouse(DicePool* pool) {
+	int pair = 0;
+	int threePair = 0;
+	for (int i = 0; i < pool->numberOfDice - 2; i++) {
+		for (int j = i + 1; j < pool->numberOfDice -1; j++) {
+			for (int k = j + 1; k < pool->numberOfDice; k++) {
+				if (pool->dice[i].nrOnFace == pool->dice[j].nrOnFace == pool->dice[k].nrOnFace) {
+					if (pool->dice[i].nrOnFace >= threePair) {
+						pair = threePair;
+						threePair = pool->dice[i].nrOnFace;
+					} else if (pool->dice[i].nrOnFace >= pair) {
+						pair = pool->dice[i].nrOnFace;
+					}
+				}
+			}
+		}
+		if (pair == 0) {
+			return 0;
+		} else {
+			return threePair + pair;
+		}
+	}
+	return findFullHouse;
 }
 
 // Function that takes input from scoreboard and calc the sum of score
