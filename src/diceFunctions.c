@@ -309,3 +309,19 @@ int calcChance(DicePool *pool)
 	return sumOfDiceValues;
 }
 
+//inputs a scoreboard and calc if the first 6 rows are more than 62 and assign
+// bonus the correct value.
+void calcBonus (ScoreboardColumn *column)
+{
+	int sumOfFirstSix = column->ones + column->twos + column->threes +
+			column->fours + column->fives + column->sixes;
+
+	if (sumOfFirstSix >= 63)
+	{
+		column->bonus = 50;
+	}
+	else
+	{
+		column->bonus = 0;
+	}
+}

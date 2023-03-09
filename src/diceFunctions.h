@@ -17,3 +17,5 @@ int findHighestTwoPairs(DicePool* pool);
 int findHighestThreeOfSame(DicePool* pool);
 int findHighestFourOfSame(DicePool *pool);
 int calcChance(DicePool *pool);
+
+void calcBonus (ScoreboardColumn *column);
