@@ -218,6 +218,7 @@ void calcSum(ScoreboardColumn *column)
 			+ column->fullHouse + column->chance + column->yatzy;
 
 	sum = column->sum;
+}
 int findHighestSinglePair(DicePool *pool)
 {
 	int countNrOnFace[6] = {0};
