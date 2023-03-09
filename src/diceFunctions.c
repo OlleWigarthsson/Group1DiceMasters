@@ -3,7 +3,7 @@
 void printDicePool(DicePool *pool){
 	for(int i = 0;i<pool->numberOfDice;i++){
 		if(pool->dice[i].toRoll == 0){
-			printf("[%d]", pool->dice[i].nrOnFace);
+			printf("[%d] ", pool->dice[i].nrOnFace);
 		}
 		else printf("%d ", pool->dice[i].nrOnFace);
 	}
@@ -126,7 +126,7 @@ int subpoolOfLargeStraight(DicePool* pool)
 
 void printScoreBoard(ScoreboardColumn* column)
 {
-	printf("This is your score:");
+	printf("This is your score: \n");
 
 	if(column->ones != -1)
 	{
@@ -236,7 +236,7 @@ int findFullHouse(DicePool* pool) {
 }
 
 // Function that takes input from scoreboard and calc the sum of score
-void calcSum(ScoreboardColumn *column)
+int calcSum(ScoreboardColumn *column)
 {
 	int sum = column->ones + column->twos + column->threes +
 			column->fours + column->fives + column->sixes + column->bonus +
@@ -244,7 +244,8 @@ void calcSum(ScoreboardColumn *column)
 			column->fourOfAKind + column->smallStraight + column->largeStraight
 			+ column->fullHouse + column->chance + column->yatzy;
 
-	sum = column->sum;
+	//sum = column->sum;
+	return sum;
 }
 int findHighestSinglePair(DicePool *pool)
 {
@@ -362,17 +363,17 @@ int calcChance(DicePool *pool)
 
 //inputs a scoreboard and calc if the first 6 rows are more than 62 and assign
 // bonus the correct value.
-void calcBonus (ScoreboardColumn *column)
+int calcBonus(ScoreboardColumn *column)
 {
 	int sumOfFirstSix = column->ones + column->twos + column->threes +
 			column->fours + column->fives + column->sixes;
 
 	if (sumOfFirstSix >= 63)
 	{
-		column->bonus = 50;
+		return 50;
 	}
 	else
 	{
-		column->bonus = 0;
+		return 0;
 	}
 }

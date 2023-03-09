@@ -18,6 +18,10 @@ int main(){
 	}
 	else if(choice == 2){
 		printMultiplayerMenu();
+		scanf("%d", &choice);
+		if(choice == 1){
+			multiPlayerGame();
+		}
 	}
 	else if(choice == 3){
 		printSettingsMenu();
