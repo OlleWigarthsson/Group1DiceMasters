@@ -12,3 +12,10 @@ void printScoreBoard(ScoreboardColumn* column);
 //Function to sum dices
 int sumOfDicepool(Dice diceArray[], int numberOfDice);
 
+int findHighestSinglePair(DicePool* pool);
+int findHighestTwoPairs(DicePool* pool);
+int findHighestThreeOfSame(DicePool* pool);
+int findHighestFourOfSame(DicePool *pool);
+int calcChance(DicePool *pool);
+
+void calcBonus (ScoreboardColumn *column);
