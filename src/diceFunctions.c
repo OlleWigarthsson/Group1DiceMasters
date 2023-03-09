@@ -121,6 +121,6 @@ int findFullHouse(DicePool* pool) {
 		}
 	}
 	/
-	return EXIT_SUCCESS;
+	return findFullHouse;
 }
 
