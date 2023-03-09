@@ -123,7 +123,7 @@ int subpoolOfLargeStraight(DicePool* pool)
 
 void printScoreBoard(ScoreboardColumn* column)
 {
-	printf("This is your score:")
+	printf("This is your score:");
 
 	if(column->ones != -1)
 	{
@@ -159,7 +159,7 @@ void printScoreBoard(ScoreboardColumn* column)
 	}
 	if(column->twoPair != -1)
 	{
-		printf("Two pair: %d", column->twoPair)
+		printf("Two pair: %d", column->twoPair);
 	}
 	if(column->threeOfAKind != -1)
 	{
@@ -195,6 +195,29 @@ void printScoreBoard(ScoreboardColumn* column)
 	}
 }
 
+
+//Function to check for 5 of a kind/ Yatzy
+int subpoolOfYatzy(DicePool* pool)
+{
+	for (int i = 0; i < pool->numberOfDice; i++) {
+		if (pool->dice[i].nrOnFace != pool->dice[0].nrOnFace)
+		{
+			return 0;
+		}
+	}
+	return 1;
+}
+
+// Function that takes input from scoreboard and calc the sum of score
+void calcSum(ScoreboardColumn *column)
+{
+	int sum = column->ones + column->twos + column->threes +
+			column->fours + column->fives + column->sixes + column->bonus +
+			column->pair + column->twoPair + column->threeOfAKind +
+			column->fourOfAKind + column->smallStraight + column->largeStraight
+			+ column->fullHouse + column->chance + column->yatzy;
+
+	sum = column->sum;
 int findHighestSinglePair(DicePool *pool)
 {
 	int countNrOnFace[6] = {0};
