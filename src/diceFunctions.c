@@ -102,7 +102,7 @@ int subpoolOfSmallStraight(DicePool* pool)
 			return 0;
 		}
 	}
-	return 1;
+	return 15;
 }
 
 //Function to check for large straight
@@ -117,7 +117,7 @@ int subpoolOfLargeStraight(DicePool* pool)
 			return 0;
 		}
 	}
-	return 1;
+	return 20;
 }
 
 
@@ -205,7 +205,7 @@ int subpoolOfYatzy(DicePool* pool)
 			return 0;
 		}
 	}
-	return 1;
+	return 100;
 }
 
 // Function that takes input from scoreboard and calc the sum of score
